@@ -28,12 +28,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(elevation: 0, title: Text(widget.title)),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.notifications),
+          onPressed: () => _showMaterialBanner(context),
+        ),
         body: Container(
           color: Colors.blueGrey,
-          child: Center(
-            child: ElevatedButton(
-              onPressed: () => _showMaterialBanner(context),
-              child: const Text('Show Material Banner'),
+          child: const Center(
+            child: Text(
+              'Material Banner Test',
+              style: TextStyle(fontSize: 24, color: Colors.white),
             ),
           ),
         ),
