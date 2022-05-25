@@ -26,10 +26,33 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: const Center(),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(elevation: 0, title: Text(widget.title)),
+        body: Container(
+          color: Colors.blueGrey,
+          child: Center(
+            child: ElevatedButton(
+              onPressed: () => _showMaterialBanner(context),
+              child: const Text('Show Material Banner'),
+            ),
+          ),
+        ),
+      );
+}
+
+void _showMaterialBanner(BuildContext context) {
+  ScaffoldMessenger.of(context).showMaterialBanner(
+    MaterialBanner(
+      content: const Text('Material Banner Test'),
+      leading: const Icon(Icons.notifications),
+      contentTextStyle: const TextStyle(color: Colors.black),
+      forceActionsBelow: true,
+      actions: [
+        TextButton(
+          onPressed: () => ScaffoldMessenger.of(context).clearMaterialBanners(),
+          child: const Text('Dismiss'),
+        ),
+      ],
+    ),
+  );
 }
